@@ -8,7 +8,7 @@ import metier.jeu.citation.Theme;
 import metier.jeu.citation.Themes;
 import service.exception.UserException;
 
-public class ServiceCitation {
+	public class ServiceCitation {
 	
 	private DaoCitation daoCitation;
 	

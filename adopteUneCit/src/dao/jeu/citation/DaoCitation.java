@@ -14,6 +14,11 @@ import metier.jeu.citation.Themes;
 import service.exception.UserException;
 import util.message.MessageAppli;
 
+/**
+ * 
+ * connexion à la base de données testlova
+ *
+ */
 public class DaoCitation {
 
 	private final String BDD 		= "testlova";
