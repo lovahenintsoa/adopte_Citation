@@ -9,7 +9,7 @@ public class MessageAppli {
 	public static final String CREER_THEME_OK			= "Le theme %d - %s a été inséré.";
 	public static final String FK_CIT_THEME 			= "On ne peut as supprimer cet enregistrement";
 
-	
+	public static final String RECUP_DEV_PASSES_KO 		= "Problème de récupération de la liste des développeurs passés.";
 	
 	
 	/*

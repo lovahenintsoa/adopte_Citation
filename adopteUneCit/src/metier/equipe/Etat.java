@@ -1,22 +1,36 @@
 package metier.equipe;
 
 public abstract class Etat {
-	private int id;
-	private String libelle;
+//	private int id;
+//	private String libelle;
+	private EtatDeveloppeur etatDeveloppeur;
+	
+	public Etat(EtatDeveloppeur etatDeveloppeur) {
+	
+		this.etatDeveloppeur = etatDeveloppeur;
+	}
+
 	public int getId() {
-		return id;
+		return  etatDeveloppeur.getId();
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getLibelle() {
-		return libelle;
+		return etatDeveloppeur.getLibelle();
 	}
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	
+	@Override
+	public String toString() {
+		return "Etat [getId()=" + getId() + ", getLibelle()=" + getLibelle() + "]";
 	}
+	
+	
 	protected abstract boolean isFutur();
 	
+	protected abstract boolean isAncien();
+	
+	protected abstract boolean isNonPasse();
+
+
 	
 	
 	

@@ -9,6 +9,7 @@ public class Developpeur {
 	private String prenom;
 	private String motDePasse;
 	private LocalDate dateInscription;
+	private String imagePortrait;
 	private Formation formation;
 	public Etat etat;
 	
@@ -21,7 +22,7 @@ public class Developpeur {
 		this.prenom = prenom;
 		this.formation = formation;
 		//setEtat(new Nonpasse());
-		setEtat(new Future());
+		//setEtat(new Future());
 	}
 	
 	
@@ -83,6 +84,22 @@ public class Developpeur {
 	public void setDateInscription(LocalDate dateInscription) {
 		this.dateInscription = dateInscription;
 	}
+	public String getImagePortrait() {
+		return imagePortrait;
+	}
+
+
+
+
+
+	public void setImagePortrait(String imagePortrait) {
+		this.imagePortrait = imagePortrait;
+	}
+
+
+
+
+
 	public Formation getFormation() {
 		return formation;
 	}
@@ -101,4 +118,24 @@ public class Developpeur {
 		return etat.isFutur();
 	}
 
+	public boolean isNonPasse() {
+		return etat.isNonPasse();
+	}
+	
+	public boolean isAncien() {
+		return etat.isAncien();
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Developpeur [id=" + id + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", motDePasse="
+				+ motDePasse + ", dateInscription=" + dateInscription + ", imagePortrait=" + imagePortrait
+				+ ", formation=" + formation + ", etat=" + etat + "]";
+	}
+	
+	
 }
