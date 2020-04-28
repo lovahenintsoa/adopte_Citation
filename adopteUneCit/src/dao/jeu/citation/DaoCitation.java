@@ -8,7 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+import java.time.LocalDate;
 
+import metier.equipe.Developpeur;
+import metier.equipe.Formation;
+import metier.jeu.citation.Citation;
 import metier.jeu.citation.Theme;
 import metier.jeu.citation.Themes;
 import service.exception.UserException;
@@ -28,6 +33,7 @@ public class DaoCitation {
 	  "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	
 	private static final String strNomDriver = "com.mysql.cj.jdbc.Driver";
+	LocalDate  localdate; 
 
 	
 	public void creer(Theme theme) throws UserException {
@@ -62,7 +68,7 @@ public class DaoCitation {
 			// gestion d'erreur cas nominal
 			// on utilise String.format en utilisant les %d et%s de MessageAppli.CREER_THEME_OK
 			if ( nbRow==1 ) throw new UserException(String.format(MessageAppli.CREER_THEME_OK,theme.getId(), theme.getLibelle()));
-			
+			 
 			    		
 		} catch(ClassNotFoundException e)  {
 			throw new UserException(MessageAppli.ERREUR_BDD);
@@ -78,6 +84,75 @@ public class DaoCitation {
 		} 
 
 	}
+	
+	
+	
+	public void creer(Citation citation) throws UserException {
+		System.out.println("DaoCitation - creer");
+		
+		//Developpeur developpeur = citation.getDeveloppeur();
+		//Formation formation= developpeur.getFormation();
+		//Theme theme= citation.getTheme();
+		// control
+	//	citation = new Citation(1, "citation 1" , LocalDate.now(), "image.jpg", theme, developpeur);
+		
+		// acces BDD
+		try {
+			// 1 - verification de la presence du driver
+			Class.forName(strNomDriver);
+			
+			// 2 - on ouvre la connexion
+			Connection conn        = DriverManager.getConnection(DBURL, USER, PASSWD);
+			localdate = citation.getDateCreation();
+			//Statement stmt 		   = conn.createStatement();
+			
+			// String reqSql = "insert into theme values (  101   ,'   vive Domixxx    ')";
+			//String reqSql = "insert into theme values ("  + theme.getId() + ",'" + theme.getLibelle() + "')";
+		
+			//System.out.println("requete : " + reqSql);
+			//int nbRow = stmt.executeUpdate(reqSql); 
+			
+			
+			// insertion dans la base en utilisant RequeteSql
+			PreparedStatement stmt = conn.prepareStatement(RequeteSql.INSERT_CITATION );
+			stmt.setNull(1, Types.NULL);
+			stmt.setInt(2,citation.getTheme().getId());
+			stmt.setInt(3,citation.getDeveloppeur().getId());
+		
+			//stmt.setString(3, citation.getTexte());
+			stmt.setString(4,citation.getTexte());
+			stmt.setDate(5,(localdate == null)? null : java.sql.Date.valueOf(localdate),java.util.Calendar.getInstance());
+			stmt.setString(6, citation.getImageCitation());
+			
+			
+			
+			int nbRow=stmt.executeUpdate();
+			
+			
+			// gestion d'erreur cas nominal
+			// on utilise String.format en utilisant les %d et%s de MessageAppli.CREER_THEME_OK
+			if ( nbRow==1 ) throw new UserException(String.format(MessageAppli.CREER_CITATATION_OK));
+			 
+			    		
+		} catch(ClassNotFoundException e)  {
+			throw new UserException(MessageAppli.ERREUR_BDD);
+		} catch (SQLException e) {
+			
+			if      (e.getMessage().contains(ContrainteMySql.PK_THEME)) 		throw new UserException(MessageAppli.ID_EXISTANT);
+			else if (e.getMessage().contains(ContrainteMySql.UN_THEME_LIBELLE)) throw new UserException(MessageAppli.LIBELLE_THEME_DOUBLON);
+			else throw new UserException(MessageAppli.ERREUR_BDD);
+//			System.out.println("SQLSTATE   : " + e.getSQLState());
+//			System.out.println("MESSAGE    : " + e.getMessage());
+//			System.out.println("ERROR CODE : " + e.getErrorCode());
+//			System.out.println("LOCAL MSG  : " + e.getLocalizedMessage());
+		} 
+
+	}
+	
+	public void creer1(Citation citation) throws UserException{
+		throw new UserException("MK");
+	}
+	
 	
 	public Themes getThemes() {
 		Themes themes = new Themes();

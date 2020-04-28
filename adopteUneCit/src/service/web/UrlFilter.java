@@ -48,6 +48,9 @@ public class UrlFilter implements Filter {
 		else if (chemin.startsWith("/citation")) {
 			chain.doFilter(requestHttp, responseHttp);
 		}
+		else if (chemin.startsWith("/site")) {
+			chain.doFilter(requestHttp, responseHttp);
+		}
 		else if (chemin.startsWith("/assets")) {
 			chain.doFilter(requestHttp, responseHttp);
 		}

@@ -43,8 +43,18 @@ public class Developpeur {
 
 		setEtat(new Ancien());
 	}
+	
+	
 
-
+	public Developpeur(int id, String pseudo, String nom, String prenom, Formation formation, String imagePortrait) {
+		this.id = id;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.formation = formation;
+		this.imagePortrait = imagePortrait;
+		setEtat(new NonPasse());		
+	}
 
 
 

@@ -48,6 +48,29 @@
 			</div> <!-- /col -->
 		</div> <!-- /row -->
 	
+	<form method ="post" action ="#">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Pseudo</label>
+    <input class="form-control" id="pseudo" aria-describedby="emailHelp" placeholder="Entrer pseudo" name="pseudoCo" style = "width:200px ;">
+    
+  </div>
+  <div id="cadreMessage">
+             		<jsp:useBean id="message"      class="java.lang.String"    scope="request" />
+             		<% if (message != null) { %><label><%= message %></label> <% } %> 	    
+             		          	
+             	</div>
+             	  <div id="cadreMessage1">
+             	<jsp:useBean id="message1"      class="java.lang.String"    scope="request" />
+             		<% if (message != null) { %><label><%= message1 %></label> <% } %> 	
+             		</div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="mdpCo"  style = "width:200px ;">
+  </div>
+
+  <button type="submit" class="btn btn-primary" formAction ="<%=request.getContextPath() %>/site/connexion">Se connecter</button>
+  <button type="submit" class="btn btn-primary" formAction ="<%=request.getContextPath() %>/site/deconnexion">deconnetion</button>
+</form>
 	</div>
 </section>
 

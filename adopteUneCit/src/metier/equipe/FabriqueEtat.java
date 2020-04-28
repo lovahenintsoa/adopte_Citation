@@ -7,11 +7,11 @@ public class FabriqueEtat {
 		Etat etat= null;
 		switch (idEtat) {
 		case 1: 
-			etat=new Nonpasse();
+			etat=new NonPasse();
 			break;
 		
 		case 2:
-			etat=new Future();
+			etat=new Futur();
 			break;
 		case 3:
 			
@@ -25,33 +25,16 @@ public class FabriqueEtat {
 		
 	}
 	
-	public static Etat getEtat(EtatDeveloppeur etatdeveloppeur) {
-		Etat etat= null;
-		
-		switch (etatdeveloppeur) {
-		case NON_PASSE: 
-			etat=new Nonpasse();
-			break;
-		
-		case FUTUR:
-			etat=new Future();
-			break;
-			
-		case ANCIEN:
-			
-			etat=new Ancien();
-			break;
-		
-		
-		
-		}
+	public static Etat getEtat(EtatDeveloppeur etatDeveloppeur) {
+		Etat etat = null;
+		if 		(etatDeveloppeur == EtatDeveloppeur.ANCIEN) 	etat = new Ancien();
+		else if (etatDeveloppeur == EtatDeveloppeur.FUTUR) 		etat = new Futur();
+		else if (etatDeveloppeur == EtatDeveloppeur.NON_PASSE) 	etat = new NonPasse();
 		return etat;
-		
 	}
-	
 	public static Etat getEtatFutur() {
 		
-		return new Future();
+		return new Futur();
 	}
 
 	public static Etat getEtatAncien() {
@@ -61,7 +44,7 @@ public class FabriqueEtat {
 	
 	public static Etat getEtatNonPasse() {
 		
-		return new Nonpasse();
+		return new NonPasse();
 	}
 }	
 	

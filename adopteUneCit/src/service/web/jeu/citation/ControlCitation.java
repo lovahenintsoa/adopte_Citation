@@ -55,6 +55,7 @@ public class ControlCitation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {				
 		String chemin  		= request.getPathInfo();	
 		
+		
 		if (chemin.equals("/creerTheme")) 			 doCreerTheme(request, response);
 		else if(chemin.equals("/suppressionTheme"))  doSuppression(request,response);
 		else 										 doAutres(request, response);

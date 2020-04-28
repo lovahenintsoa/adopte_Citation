@@ -2,10 +2,10 @@ package metier.equipe;
 
 import java.time.LocalDate;
 
-public class Future extends Passe {
+public class Futur extends Passe {
 	private LocalDate datePassage;
 
-	public Future() {
+	public Futur() {
 		super(EtatDeveloppeur.FUTUR);
 	}
 	

@@ -1,8 +1,8 @@
 package metier.equipe;
 
-public class Nonpasse extends Etat {
+public class NonPasse extends Etat {
 
-	public Nonpasse() {
+	public NonPasse() {
 		super(EtatDeveloppeur.NON_PASSE);
 	
 	}
